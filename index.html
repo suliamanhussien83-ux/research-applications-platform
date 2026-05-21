@@ -1,134 +1,661 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="ar" dir="rtl">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة التطبيقات الإحصائية الشاملة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <meta charset="UTF-8">
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        /* Header Styles */
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
 
-  <title>Research Applications Platform</title>
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-  <style>
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    body{
-      margin:0;
-      font-family:Arial, sans-serif;
-      background:#f4f6f9;
-    }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
 
-    header{
-      background:#0d47a1;
-      color:white;
-      text-align:center;
-      padding:40px;
-    }
+        .logo i {
+            font-size: 2rem;
+        }
 
-    header h1{
-      margin:0;
-      font-size:40px;
-    }
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
 
-    header p{
-      margin-top:15px;
-      font-size:18px;
-    }
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
 
-    .container{
-      width:90%;
-      margin:auto;
-      margin-top:40px;
-    }
+        .nav-menu a:hover {
+            background: rgba(255,255,255,0.2);
+        }
 
-    .card{
-      background:white;
-      padding:25px;
-      border-radius:12px;
-      margin-bottom:25px;
-      box-shadow:0px 0px 12px rgba(0,0,0,0.1);
-    }
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            background: white;
+            margin-bottom: 3rem;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+        }
 
-    .card h2{
-      color:#0d47a1;
-    }
+        .hero h1 {
+            font-size: 3rem;
+            color: #1e3c72;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
 
-    .description{
-      line-height:1.8;
-      font-size:17px;
-      direction:rtl;
-    }
+        .hero p {
+            font-size: 1.3rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+        }
 
-    .btn{
-      display:inline-block;
-      margin-top:15px;
-      background:#1976d2;
-      color:white;
-      padding:12px 20px;
-      border-radius:6px;
-      text-decoration:none;
-      transition:0.3s;
-    }
+        /* Categories */
+        .categories {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
 
-    .btn:hover{
-      background:#0d47a1;
-    }
+        .category-btn {
+            padding: 0.8rem 1.5rem;
+            background: white;
+            border: 2px solid #2a5298;
+            color: #2a5298;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-family: 'Cairo', sans-serif;
+        }
 
-  </style>
+        .category-btn:hover, .category-btn.active {
+            background: #2a5298;
+            color: white;
+        }
 
+        /* Applications Grid */
+        .applications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .application-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border-top: 5px solid;
+        }
+
+        .application-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .card-icon {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            color: white;
+        }
+
+        .ardl .card-icon { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .seir .card-icon { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .timeseries .card-icon { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+        .regression .card-icon { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+        .bayesian .card-icon { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+        .multivariate .card-icon { background: linear-gradient(135deg, #30cfd0 0%, #330867 100%); }
+        .datamining .card-icon { background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); color: #333; }
+        .machinelearning .card-icon { background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); color: #333; }
+        .quality .card-icon { background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); color: #333; }
+        .survival .card-icon { background: linear-gradient(135deg, #ff6e7f 0%, #bfe9ff 100%); color: #333; }
+        .experiment .card-icon { background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%); color: #333; }
+        .spatial .card-icon { background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%); color: #333; }
+        .financial .card-icon { background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%); }
+        .biostatistics .card-icon { background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); }
+        .psychometrics .card-icon { background: linear-gradient(135deg, #ee0979 0%, #ff6a00 100%); }
+        .econometrics .card-icon { background: linear-gradient(135deg, #536976 0%, #292E49 100%); }
+        .sampling .card-icon { background: linear-gradient(135deg, #00b4db 0%, #0083b0 100%); }
+        .nonparametric .card-icon { background: linear-gradient(135deg, #f83600 0%, #f9d423 100%); }
+
+        .application-card h3 {
+            font-size: 1.5rem;
+            color: #1e3c72;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+        }
+
+        .application-card .category-tag {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: #f0f4f8;
+            color: #2a5298;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .application-card p {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 2rem;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(30, 60, 114, 0.3);
+            width: 100%;
+            text-align: center;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(30, 60, 114, 0.4);
+        }
+
+        /* Color Variations for Cards */
+        .ardl { border-top-color: #667eea; }
+        .seir { border-top-color: #f5576c; }
+        .timeseries { border-top-color: #4facfe; }
+        .regression { border-top-color: #43e97b; }
+        .bayesian { border-top-color: #fa709a; }
+        .multivariate { border-top-color: #30cfd0; }
+        .datamining { border-top-color: #a8edea; }
+        .machinelearning { border-top-color: #ff9a9e; }
+        .quality { border-top-color: #ffecd2; }
+        .survival { border-top-color: #ff6e7f; }
+        .experiment { border-top-color: #a1c4fd; }
+        .spatial { border-top-color: #e0c3fc; }
+        .financial { border-top-color: #ffd89b; }
+        .biostatistics { border-top-color: #11998e; }
+        .psychometrics { border-top-color: #ee0979; }
+        .econometrics { border-top-color: #536976; }
+        .sampling { border-top-color: #00b4db; }
+        .nonparametric { border-top-color: #f83600; }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: white;
+            padding: 3rem 0;
+            margin-bottom: 3rem;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item h4 {
+            font-size: 2.5rem;
+            color: #2a5298;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            color: #666;
+            font-weight: 600;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .applications-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+        }
+
+        /* Loading Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .application-card {
+            animation: fadeIn 0.6s ease-out;
+        }
+    </style>
 </head>
-
 <body>
 
-  <header>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>المنصة الإحصائية الشاملة</span>
+                </div>
+                <nav>
+                    <ul class="nav-menu">
+                        <li><a href="#home"><i class="fas fa-home"></i> الرئيسية</a></li>
+                        <li><a href="#apps"><i class="fas fa-th"></i> التطبيقات</a></li>
+                        <li><a href="#categories"><i class="fas fa-list"></i> التصنيفات</a></li>
+                        <li><a href="#contact"><i class="fas fa-envelope"></i> تواصل معنا</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
 
-    <h1>Research Applications Platform</h1>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>المنصة الشاملة للتطبيقات الإحصائية</h1>
+            <p>منصة متكاملة تضم جميع التخصصات الإحصائية الحديثة والتقليدية لدعم البحث العلمي والتحليل الإحصائي المتقدم</p>
+        </div>
+    </section>
 
-    <p>
-      Interactive research applications developed by graduate students
-    </p>
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h4>18+</h4>
+                    <p>تطبيق إحصائي</p>
+                </div>
+                <div class="stat-item">
+                    <h4>12</h4>
+                    <p>تخصص إحصائي</p>
+                </div>
+                <div class="stat-item">
+                    <h4>100+</h4>
+                    <p>أسلوب تحليلي</p>
+                </div>
+                <div class="stat-item">
+                    <h4>24/7</h4>
+                    <p>دعم فني</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  </header>
+    <!-- Categories -->
+    <section class="categories" id="categories">
+        <button class="category-btn active" onclick="filterApps('all')">الكل</button>
+        <button class="category-btn" onclick="filterApps('timeseries')">السلاسل الزمنية</button>
+        <button class="category-btn" onclick="filterApps('modeling')">النمذجة</button>
+        <button class="category-btn" onclick="filterApps('applied')">الإحصاء التطبيقي</button>
+        <button class="category-btn" onclick="filterApps('advanced')">الإحصاء المتقدم</button>
+    </section>
 
-  <div class="container">
+    <!-- Applications Section -->
+    <section class="container" id="apps">
+        <div class="applications-grid">
+            
+            <!-- ARDL -->
+            <div class="application-card ardl" data-category="timeseries">
+                <div class="card-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <span class="category-tag">السلاسل الزمنية</span>
+                <h3>نموذج ARDL</h3>
+                <p>تحليل السلاسل الزمنية وتقدير نموذج ARDL واختبارات التكامل المشترك. مثالي للبحوث الاقتصادية والمالية.</p>
+                <a href="#" class="btn">
+                    <i class="fas fa-external-link-alt"></i> فتح التطبيق
+                </a>
+            </div>
 
-    <div class="card">
+            <!-- SEIR Model -->
+            <div class="application-card seir" data-category="modeling">
+                <div class="card-icon">
+                    <i class="fas fa-virus"></i>
+                </div>
+                <span class="category-tag">النمذجة الرياضية</span>
+                <h3>نموذج SEIR الوبائي</h3>
+                <p>محاكاة انتشار الأوبئة باستخدام المعادلات التفاضلية. تحليل وتوقع أنماط الانتشار الوبائي.</p>
+                <a href="#" class="btn">
+                    <i class="fas fa-external-link-alt"></i> فتح التطبيق
+                </a>
+            </div>
 
-      <h2>ARDL Application</h2>
+            <!-- Time Series -->
+            <div class="application-card timeseries" data-category="timeseries">
+                <div class="card-icon">
+                    <i class="fas fa-wave-square"></i>
+                </div>
+                <span class="category-tag">السلاسل الزمنية</span>
+                <h3>تحليل السلاسل الزمنية</h3>
+                <p>نماذج ARIMA, SARIMA, GARCH للتنبؤ بالسلاسل الزمنية. تحليل الاتجاهات والموسمية.</p>
+                <a href="#" class="btn">
+                    <i class="fas fa-external-link-alt"></i> فتح التطبيق
+                </a>
+            </div>
 
-      <p class="description">
+            <!-- Regression -->
+            <div class="application-card regression" data-category="modeling">
+                <div class="card-icon">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <span class="category-tag">النمذجة الإحصائية</span>
+                <h3>تحليل الانحدار</h3>
+                <p>الانحدار الخطي، اللوجستي، المتعدد، والغير خطي. اختيار النموذج الأمثل والتحقق من الافتراضات.</p>
+                <a href="#" class="btn">
+                    <i class="fas fa-external-link-alt"></i> فتح التطبيق
+                </a>
+            </div>
 
-        تطبيق تفاعلي لتحليل السلاسل الزمنية وتقدير نموذج ARDL واختبارات التكامل المشترك.
+            <!-- Bayesian -->
+            <div class="application-card bayesian" data-category="advanced">
+                <div class="card-icon">
+                    <i class="fas fa-infinity"></i>
+                </div>
+                <span class="category-tag">الإحصاء البيزي</span>
+                <h3>الإحصاء البيزي</h3>
+                <p>التحليل البيزي باستخدام MCMC و Gibbs Sampling. تحديث المعتقدات الإحصائية بالبيانات الجديدة.</p>
+                <a href="#" class="btn">
+                    <i class="fas fa-external-link-alt"></i> فتح التطبيق
+                </a>
+            </div>
 
-      </p>
+            <!-- Multivariate -->
+            <div class="application-card multivariate" data-category="advanced">
+                <div class="card-icon">
+                    <i class="fas fa-layer-group"></i>
+                </div>
+                <span class="category-tag">الإحصاء متعدد المتغيرات</span>
+                <h3>التحليل متعدد المتغيرات</h3>
+                <p>تحليل العوامل، العنقودي، التمايزي، والمكونات الرئيسية PCA. تحليل البيانات عالية الأبعاد.</p>
+                <a href="#" class="btn">
+                    <i class="fas fa-external-link-alt"></i> فتح التطبيق
+                </a>
+            </div>
 
-      <a class="btn" href="#" target="_blank">
+            <!-- Data Mining -->
+            <div class="application-card datamining" data-category="advanced">
+                <div class="card-icon">
+                    <i class="fas fa-database"></i>
+                </div>
+                <span class="category-tag">تنقيب البيانات</span>
+                <h3>تنقيب البيانات</h3>
+                <p>اكتشاف الأنماط الخفية في البيانات الضخمة. خوارزميات التجميع والتصنيف والارتباط.</p>
+                <a href="#" class="btn">
+                    <i class="fas fa-external-link-alt"></i> فتح التطبيق
+                </a>
+            </div>
 
-        Open Application
+            <!-- Machine Learning -->
+            <div class="application-card machinelearning" data-category="advanced">
+                <div class="card-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <span class="category-tag">التعلم الآلي</span>
+                <h3>التعلم الآلي الإحصائي</h3>
+                <p>خوارزميات التعلم العميق، الشبكات العصبية، الغابات العشوائية، وآلات المتجهات الداعمة SVM.</p>
+                <a href="#" class="btn">
+                    <i class="fas fa-external-link-alt"></i> فتح التطبيق
+                </a>
+            </div>
 
-      </a>
+            <!-- Quality Control -->
+            <div class="application-card quality" data-category="applied">
+                <div class="card-icon">
+                    <i class="fas fa-clipboard-check"></i>
+                </div>
+                <span class="category-tag">ضبط الجودة</span>
+                <h3>ضبط الجودة الإحصائي</h3>
+                <p>مخططات المراقبة الإحصائية SPC، Six Sigma، وتحليل القدرة العملية.</p>
+                <a href="#" class="btn">
+                    <i class="fas fa-external-link-alt"></i> فتح التطبيق
+                </a>
+            </div>
 
-    </div>
+            <!-- Survival Analysis -->
+            <div class="application-card survival" data-category="applied">
+                <div class="card-icon">
+                    <i class="fas fa-heartbeat"></i>
+                </div>
+                <span class="category-tag">الإحصاء الحيوي</span>
+                <h3>تحليل البقاء</h3>
+                <p>نماذج كوكس، كابلان-ماير، وتحليل البيانات المقطوعة. تطبيقات في الطب والهندسة.</p>
+                <a href="#" class="btn">
+                    <i class="fas fa-external-link-alt"></i> فتح التطبيق
+                </a>
+            </div>
 
-    <div class="card">
+            <!-- Experimental Design -->
+            <div class="application-card experiment" data-category="applied">
+                <div class="card-icon">
+                    <i class="fas fa-flask"></i>
+                </div>
+                <span class="category-tag">تصميم التجارب</span>
+                <h3>تصميم وتحليل التجارب</h3>
+                <p>DOE، Taguchi، الاستجابة السطحية RSM. تحسين العمليات والمنتجات إحصائياً.</p>
+                <a href="#" class="btn">
+                    <i class="fas fa-external-link-alt"></i> فتح التطبيق
+                </a>
+            </div>
 
-      <h2>SEIR Model Application</h2>
+            <!-- Spatial Statistics -->
+            <div class="application-card spatial" data-category="applied">
+                <div class="card-icon">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <span class="category-tag">الإحصاء المكاني</span>
+                <h3>الإحصاء المكاني والجيostatistics</h3>
+                <p>Kriging، التحليل المكاني، الأنماط المكانية. تطبيقات في الجيولوجيا والبيئة.</p>
+                <a href="#" class="btn">
+                    <i class="fas fa-external-link-alt"></i> فتح التطبيق
+                </a>
+            </div>
 
-      <p class="description">
+            <!-- Financial Statistics -->
+            <div class="application-card financial" data-category="applied">
+                <div class="card-icon">
+                    <i class="fas fa-chart-area"></i>
+                </div>
+                <span class="category-tag">الإحصاء المالي</span>
+                <h3>الإحصاء المالي والاقتصادي</h3>
+                <p>نماذج GARCH، Value at Risk، تحليل المخاطر، والتنبؤ بالأسواق المالية.</p>
+                <a href="#" class="btn">
+                    <i class="fas fa-external-link-alt"></i> فتح التطبيق
+                </a>
+            </div>
 
-        تطبيق تفاعلي لتقدير وتحليل النماذج الوبائية باستخدام نموذج SEIR.
+            <!-- Biostatistics -->
+            <div class="application-card biostatistics" data-category="applied">
+                <div class="card-icon">
+                    <i class="fas fa-dna"></i>
+                </div>
+                <span class="category-tag">الإحصاء الحيوي</span>
+                <h3>الإحصاء الحيوي والوبائي</h3>
+                <p>تحليل التجارب السريرية، الدراسات الوبائية، وتحليل البيانات الطبية الحيوية.</p>
+                <a href="#" class="btn">
+                    <i class="fas fa-external-link-alt"></i> فتح التطبيق
+                </a>
+            </div>
 
-      </p>
+            <!-- Psychometrics -->
+            <div class="application-card psychometrics" data-category="applied">
+                <div class="card-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <span class="category-tag">القياس النفسي</span>
+                <h3>القياس النفسي والتربوي</h3>
+                <p>نظرية الاستجابة للفقرة IRT، التحليل العاملي التوكيدي، صدق وثبات المقاييس.</p>
+                <a href="#" class="btn">
+                    <i class="fas fa-external-link-alt"></i> فتح التطبيق
+                </a>
+            </div>
 
-      <a class="btn" href="#" target="_blank">
+            <!-- Econometrics -->
+            <div class="application-card econometrics" data-category="applied">
+                <div class="card-icon">
+                    <i class="fas fa-coins"></i>
+                </div>
+                <span class="category-tag">الاقتصاد القياسي</span>
+                <h3>الاقتصاد القياسي</h3>
+                <p>نماذج البيانات المقطعية، الطولية، والبانل. المعادلات المتزامنة والسببية.</p>
+                <a href="#" class="btn">
+                    <i class="fas fa-external-link-alt"></i> فتح التطبيق
+                </a>
+            </div>
 
-        Open Application
+            <!-- Sampling -->
+            <div class="application-card sampling" data-category="advanced">
+                <div class="card-icon">
+                    <i class="fas fa-random"></i>
+                </div>
+                <span class="category-tag">نظرية المعاينة</span>
+                <h3>نظرية المعاينة</h3>
+                <p>تصميم العينات، المعاينة الطبقية، العنقودية، وتقدير أحجام العينات.</p>
+                <a href="#" class="btn">
+                    <i class="fas fa-external-link-alt"></i> فتح التطبيق
+                </a>
+            </div>
 
-      </a>
+            <!-- Non-parametric -->
+            <div class="application-card nonparametric" data-category="advanced">
+                <div class="card-icon">
+                    <i class="fas fa-project-diagram"></i>
+                </div>
+                <span class="category-tag">الإحصاء اللا معلمي</span>
+                <h3>الإحصاء اللا معلمي</h3>
+                <p>اختبارات Mann-Whitney، Kruskal-Wallis، Wilcoxon. للبيانات غير الطبيعية.</p>
+                <a href="#" class="btn">
+                    <i class="fas fa-external-link-alt"></i> فتح التطبيق
+                </a>
+            </div>
 
-    </div>
+        </div>
+    </section>
 
-  </div>
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <p style="font-size: 1.2rem; margin-bottom: 1rem;">
+                <i class="fas fa-university"></i> المنصة الإحصائية الشاملة للبحوث العلمية
+            </p>
+            <p>&copy; 2024 جميع الحقوق محفوظة</p>
+            <p style="margin-top: 1rem;">
+                <i class="fas fa-envelope"></i> info@statplatform.edu | 
+                <i class="fas fa-phone"></i> +966 XX XXX XXXX
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        function filterApps(category) {
+            const cards = document.querySelectorAll('.application-card');
+            const buttons = document.querySelectorAll('.category-btn');
+            
+            // Update active button
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+                if(btn.getAttribute('onclick').includes(category)) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            // Filter cards
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'block';
+                    card.style.animation = 'fadeIn 0.6s ease-out';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
 
 </body>
-
 </html>
