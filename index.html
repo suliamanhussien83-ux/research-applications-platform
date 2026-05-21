@@ -681,21 +681,37 @@ function searchPlatform() {
 
     let input = document.getElementById("searchInput").value.toLowerCase();
 
-    let cards = document.querySelectorAll(".field-card, .application-card");
+    let sections = document.querySelectorAll(
+        ".research-areas, .applications-section, .contact-info, .footer"
+    );
 
-    cards.forEach(function(card) {
+    sections.forEach(function(section) {
 
-        let text = card.innerText.toLowerCase();
-        let keywords = card.getAttribute("data-keywords") || "";
+        let text = section.innerText.toLowerCase();
+        let cards = section.querySelectorAll(".field-card, .application-card");
 
-        if (text.includes(input) || keywords.toLowerCase().includes(input)) {
-            card.style.display = "block";
+        if (input === "") {
+            section.style.display = "block";
+            cards.forEach(card => card.style.display = "block");
+        } 
+        else if (text.includes(input)) {
+            section.style.display = "block";
+
+            cards.forEach(function(card) {
+                let cardText = card.innerText.toLowerCase();
+                let keywords = card.getAttribute("data-keywords") || "";
+
+                if (cardText.includes(input) || keywords.toLowerCase().includes(input)) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+
         } else {
-            card.style.display = "none";
+            section.style.display = "none";
         }
-
     });
-
 }
 </script>
     
