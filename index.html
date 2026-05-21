@@ -571,7 +571,7 @@
     <div class="container">
         <h2 class="section-title">Planned Research Applications</h2>
 
-<div class="application-card">
+<div class="application-card" data-keywords="fardl fuzzy ardl fuzzy-ardl econometrics cointegration">
 
     <div class="card-icon">
         <i class="fas fa-wave-square"></i>
@@ -677,7 +677,6 @@
     </footer>
 
 <script>
-
 function searchPlatform() {
 
     let input = document.getElementById("searchInput").value.toLowerCase();
@@ -687,8 +686,9 @@ function searchPlatform() {
     cards.forEach(function(card) {
 
         let text = card.innerText.toLowerCase();
+        let keywords = card.getAttribute("data-keywords") || "";
 
-        if (text.includes(input)) {
+        if (text.includes(input) || keywords.toLowerCase().includes(input)) {
             card.style.display = "block";
         } else {
             card.style.display = "none";
@@ -697,7 +697,6 @@ function searchPlatform() {
     });
 
 }
-
 </script>
     
 </body>
