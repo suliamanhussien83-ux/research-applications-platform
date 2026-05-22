@@ -81,7 +81,6 @@ placeholder="Application Description"></textarea>
 
 </div>
 <script>
-
 let password = prompt("Enter Admin Password");
 
 if(password !== "20002000"){
@@ -89,31 +88,16 @@ if(password !== "20002000"){
 }
 
 function publishApp(){
+    let name = document.getElementById("appName").value;
+    let description = document.getElementById("appDescription").value;
+    let url = document.getElementById("appURL").value;
+    let category = document.getElementById("appCategory").value;
 
-    let name =
-    document.getElementById("appName").value;
-
-    let description =
-    document.getElementById("appDescription").value;
-
-    let url =
-    document.getElementById("appURL").value;
-
-    let category =
-    document.getElementById("appCategory").value;
-
-    alert(
-        "Application Published Successfully!\n\n" +
-
-        "Name: " + name + "\n" +
-
-        "Category: " + category + "\n" +
-
-        "URL: " + url
-    );
-
+    alert("Application Published Successfully!\n\n" +
+          "Name: " + name + "\n" +
+          "Category: " + category + "\n" +
+          "URL: " + url);
 }
-
 </script>
 
 
