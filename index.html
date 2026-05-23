@@ -484,7 +484,9 @@
         </div>
 
     </a>
-               <a href="#apps" class="field-link">
+               <a href="#apps"
+class="field-link"
+onclick="filterApps('Machine Learning')">
 
                 <div class="field-card">
                     <i class="fas fa-brain"></i>
@@ -493,7 +495,9 @@
                 </div>
                  </a> 
 
-     <a href="#apps" class="field-link">
+     <a href="#apps"
+class="field-link"
+onclick="filterApps('Data Mining')">
                 <div class="field-card">
                     <i class="fas fa-database"></i>
                     <h3>Data Mining</h3>
@@ -501,7 +505,9 @@
                 </div>
  </a> 
 
-    <a href="#apps" class="field-link">
+   <a href="#apps"
+class="field-link"
+onclick="filterApps('Experimental Design')">
                 <div class="field-card">
                     <i class="fas fa-flask"></i>
                     <h3>Experimental Design</h3>
@@ -892,6 +898,24 @@ else if(appData.category === "Applied Statistics"){
 loadApplications();
 
 </script> 
+
+<script>
+function filterApps(category){
+    let cards = document.querySelectorAll(".application-card");
+
+    cards.forEach(function(card){
+        let tag = card.querySelector(".category-tag");
+
+        if(tag && tag.innerText.trim() === category){
+            card.style.display = "flex";
+        } else {
+            card.style.display = "none";
+        }
+    });
+}
+</script>
+
+    
     
 </body>
 </html>
