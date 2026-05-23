@@ -153,6 +153,7 @@
     flex-direction:column;
     justify-content:flex-start;
     text-align:center;
+      transition:0.3s;
 }
         .field-link{
     text-decoration: none;
@@ -240,6 +241,19 @@
             font-weight: 600;
         }
 
+.language-tag {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    background: #eef3ff;
+    color: #1e3c72;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    margin-left: 8px;
+}
+
+        
         .application-card h3 {
             font-size: 1.5rem;
             color: #1e3c72;
@@ -719,7 +733,24 @@
     </div>
 </section>
 
+<section class="about-platform">
 
+    <div class="container">
+
+        <h2 class="section-title">
+            About QAppLab
+        </h2>
+
+        <p>
+            QAppLab is an interactive academic platform
+            dedicated to publishing statistical,
+            econometric, machine learning, and
+            quantitative research applications.
+        </p>
+
+    </div>
+
+</section>
 
 
     
@@ -871,6 +902,7 @@ else if(appData.category === "Applied Statistics"){
             </div>
 
             <span class="category-tag">${appData.category}</span>
+            <span class="language-tag">R Shiny</span>
 
             <h3>${appData.name}</h3>
 
