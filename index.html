@@ -388,7 +388,76 @@
 }
 
 
+<style>
 
+/* جميع أكوادك الحالية */
+
+.field-card{
+   ...
+}
+
+.btn{
+   ...
+}
+
+/* الصق هنا */
+
+.modal{
+    display:none;
+    position:fixed;
+    z-index:9999;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
+}
+
+.modal-content{
+    background:white;
+    width:70%;
+    max-width:700px;
+    margin:8% auto;
+    padding:40px;
+    border-radius:20px;
+    text-align:center;
+    position:relative;
+    animation:popup 0.3s ease;
+}
+
+.modal-content h2{
+    color:#1e3c72;
+    margin-bottom:20px;
+}
+
+.modal-content p{
+    line-height:2;
+    color:#555;
+    font-size:18px;
+}
+
+.close-btn{
+    position:absolute;
+    right:20px;
+    top:15px;
+    font-size:30px;
+    cursor:pointer;
+    color:#1e3c72;
+}
+
+@keyframes popup{
+    from{
+        transform:scale(0.8);
+        opacity:0;
+    }
+
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+</style>
 
         
     </style>
@@ -628,28 +697,6 @@
         </div>
     </div>
 </section>
-
-
-<section class="about-platform">
-
-    <div class="container">
-
-        <h2 class="section-title">
-            About QAppLab
-        </h2>
-
-        <p>
-            QAppLab is an interactive academic platform
-            dedicated to publishing statistical,
-            econometric, machine learning, and
-            quantitative research applications.
-        </p>
-
-    </div>
-
-</section>
-
-
 
 
     
@@ -1000,6 +1047,48 @@ function filterApps(category){
 }
 </script>
 
+<script>
+
+function openAboutModal(){
+    document.getElementById("aboutModal").style.display = "block";
+}
+
+function closeAboutModal(){
+    document.getElementById("aboutModal").style.display = "none";
+}
+
+window.onclick = function(event){
+
+    let modal = document.getElementById("aboutModal");
+
+    if(event.target == modal){
+        modal.style.display = "none";
+    }
+}
+
+</script>
+
+    <div id="aboutModal" class="modal">
+
+    <div class="modal-content">
+
+        <span class="close-btn"
+              onclick="closeAboutModal()">
+              &times;
+        </span>
+
+        <h2>About QAppLab</h2>
+
+        <p>
+            QAppLab is an interactive academic platform
+            dedicated to publishing statistical,
+            econometric, machine learning,
+            and quantitative research applications.
+        </p>
+
+    </div>
+
+</div>
     
     
 </body>
