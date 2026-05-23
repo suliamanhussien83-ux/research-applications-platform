@@ -80,24 +80,58 @@ placeholder="Application Description"></textarea>
 </button>
 
 </div>
-<script>
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+getFirestore,
+collection,
+addDoc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCdVWduXVuF3i2SyBo3lk-mA0Y04WEd1751E",
+  authDomain: "qapplab-716e6.firebaseapp.com",
+  projectId: "qapplab-716e6",
+  storageBucket: "qapplab-716e6.firebasestorage.app",
+  messagingSenderId: "102092641129",
+  appId: "1:102092641129:web:e4ddb3f48968f40a50e3f8"
+};
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
 let password = prompt("Enter Admin Password");
 
 if(password !== "20002000"){
     document.body.innerHTML = "<h1>Access Denied</h1>";
 }
 
-function publishApp(){
+window.publishApp = async function(){
+
     let name = document.getElementById("appName").value;
+
     let description = document.getElementById("appDescription").value;
+
     let url = document.getElementById("appURL").value;
+
     let category = document.getElementById("appCategory").value;
 
-    alert("Application Published Successfully!\n\n" +
-          "Name: " + name + "\n" +
-          "Category: " + category + "\n" +
-          "URL: " + url);
+    await addDoc(collection(db, "applications"), {
+
+        name: name,
+        description: description,
+        url: url,
+        category: category
+
+    });
+
+    alert("Application Published Successfully!");
+
 }
+
 </script>
 
 </body>
