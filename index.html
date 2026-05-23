@@ -176,20 +176,25 @@
             padding: 4rem 0;
         }
 
-        .applications-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 2rem;
-        }
+.applications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+    align-items: stretch;
+}
 
         .application-card {
-            background: white;
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            border-top: 5px solid #2a5298;
-        }
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    border-top: 5px solid #2a5298;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 
         .application-card:hover {
             transform: translateY(-10px);
