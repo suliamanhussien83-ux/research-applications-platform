@@ -827,9 +827,50 @@ async function loadApplications(){
 
         card.className = "application-card";
 
+let icon = "fa-chart-pie";
+
+if(appData.category === "Time Series Analysis"){
+    icon = "fa-chart-line";
+}
+else if(appData.category === "Econometrics"){
+    icon = "fa-calculator";
+}
+else if(appData.category === "Machine Learning"){
+    icon = "fa-brain";
+}
+else if(appData.category === "Data Mining"){
+    icon = "fa-database";
+}
+else if(appData.category === "Experimental Design"){
+    icon = "fa-flask";
+}
+else if(appData.category === "Biostatistics"){
+    icon = "fa-heartbeat";
+}
+else if(appData.category === "Multivariate Analysis"){
+    icon = "fa-project-diagram";
+}
+else if(appData.category === "Bayesian Statistics"){
+    icon = "fa-infinity";
+}
+else if(appData.category === "Sampling Theory"){
+    icon = "fa-random";
+}
+else if(appData.category === "Spatial Statistics"){
+    icon = "fa-globe";
+}
+else if(appData.category === "Nonparametric Statistics"){
+    icon = "fa-wave-square";
+}
+else if(appData.category === "Applied Statistics"){
+    icon = "fa-chart-pie";
+}
+
+
+        
         card.innerHTML = `
             <div class="card-icon">
-                <i class="fas fa-chart-line"></i>
+               <i class="fas ${icon}"></i>
             </div>
 
             <span class="category-tag">${appData.category}</span>
