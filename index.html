@@ -134,20 +134,25 @@
             font-weight: 800;
         }
 
-        .fields-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
+.fields-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+    margin-top:50px;
+}
 
-        .field-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.06);
-            transition: 0.3s;
-        }
+.field-card{
+    background:white;
+    padding:40px 30px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    text-align:center;
+}
 
         .field-card:hover {
             border: 1px solid #dbeafe;
