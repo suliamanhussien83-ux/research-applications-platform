@@ -573,6 +573,7 @@
     <section class="applications-section" id="apps">
     <div class="container">
         <h2 class="section-title">Planned Research Applications</h2>
+        <div id="firebase-apps-container" class="applications-grid"></div>
 
 <div class="application-card" data-keywords="fardl fuzzy ardl fuzzy-ardl econometrics cointegration">
 
@@ -754,6 +755,65 @@ function searchPlatform() {
     });
 }
 </script>
+   <script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+getFirestore,
+collection,
+getDocs
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCdVWduXVuF3i2SyBo3lk-mA0Y04WEd1751E",
+  authDomain: "qapplab-716e6.firebaseapp.com",
+  projectId: "qapplab-716e6",
+  storageBucket: "qapplab-716e6.firebasestorage.app",
+  messagingSenderId: "102092641129",
+  appId: "1:102092641129:web:e4ddb3f48968f40a50e3f8"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+async function loadApplications(){
+
+    const container = document.getElementById("firebase-apps-container");
+
+    const querySnapshot = await getDocs(collection(db, "applications"));
+
+    querySnapshot.forEach(function(doc){
+
+        const appData = doc.data();
+
+        const card = document.createElement("div");
+
+        card.className = "application-card";
+
+        card.innerHTML = `
+            <div class="card-icon">
+                <i class="fas fa-chart-line"></i>
+            </div>
+
+            <span class="category-tag">${appData.category}</span>
+
+            <h3>${appData.name}</h3>
+
+            <p>${appData.description}</p>
+
+            <a href="${appData.url}" target="_blank" class="btn">
+                Open Application
+            </a>
+        `;
+
+        container.appendChild(card);
+    });
+}
+
+loadApplications();
+
+</script> 
     
 </body>
 </html>
